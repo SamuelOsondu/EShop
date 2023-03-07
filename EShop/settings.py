@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
-    'shop',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +55,7 @@ ROOT_URLCONF = 'EShop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'shop/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {

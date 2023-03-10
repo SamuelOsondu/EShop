@@ -27,3 +27,9 @@ def test(request):
     return render(request, "shop/test.html")
 
 
+def login(request):
+    return render(request, "shop/login.html")
+
+
+def signup(request):
+    return render(request, "shop/signup.html")

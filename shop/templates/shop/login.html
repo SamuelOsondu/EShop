@@ -1,48 +1,98 @@
-{% extends 'shop/base.html' %}
+{% load static %}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'shop/user/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/user/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/user/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/user/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/user/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/user/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/user/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/user/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/user/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/user/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/user/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-26">
+						LOGIN!
+					</span>
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+						<input class="input100" type="text" name="email">
+						<span class="focus-input100" data-placeholder="Email"></span>
+					</div>
 
-{% block body %}
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="pass">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
 
-    <div class="container">
-        <!-- HERO SECTION-->
-        <section class="py-5 bg-light">
-          <div class="container">
-            <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
-              <div class="col-lg-6">
-                <h1 class="h2 text-uppercase mb-0">LOGIN</h1>
-              </div>
-              <div class="col-lg-6 text-lg-end">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb justify-content-lg-end mb-0 px-0 bg-light">
-                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'home' %}">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'cart' %}">Cart</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Checkout</li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </section>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
 
-    <section class="py-5">
-    <!-- LOGIN-->
-      <div class="row">
-        <div class="col-lg-8">
-          <form action="#">
-            <div class="row gy-3">
-              <div class="col-lg-12">
-                <label class="form-label text-sm text-uppercase" for="email">Email address </label>
-                <input class="form-control form-control-lg" type="email" id="email" placeholder="e.g. Jason@example.com">
-              </div>
-              <div class="col-lg-12">
-                <label class="form-label text-sm text-uppercase" for="password">Password </label>
-                <input class="form-control form-control-lg" type="password" id="phone" placeholder="password">
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-    </div>
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							Don’t have an account?
+						</span>
 
-{% endblock %}
+						<a class="txt2" href="{% url 'signup' %}">
+							Sign Up
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="{% static 'shop/user/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'shop/user/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'shop/user/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'shop/user/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'shop/user/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'shop/user/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'shop/user/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'shop/user/vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'shop/user/js/main.js' %}"></script>
+
+</body>
+</html>

@@ -47,15 +47,15 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'shop/signup.html', {'form': form})
 
-    # if request.method == 'POST':
-    #     form = UserCreationForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         customer = Customer.objects.create(user=user, shipping_address=request.POST['shipping_address'],
-    #                                            billing_address=request.POST['billing_address'],
-    #                                            phone_number=request.POST['phone_number'])
-    #         return redirect('home')
-    #     else:
-    #         form = UserCreationForm()
-    #
-    #     return render(request, "shop/signup.html", {'form': form})
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            customer = Customer.objects.create(user=user, shipping_address=request.POST['shipping_address'],
+                                               billing_address=request.POST['billing_address'],
+                                               phone_number=request.POST['phone_number'])
+            return redirect('home')
+        else:
+            form = UserCreationForm()
+
+        return render(request, "shop/signup.html", {'form': form})

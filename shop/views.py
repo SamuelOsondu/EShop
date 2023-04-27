@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
-from shop.forms import SignUpForm
+from shop.forms import SignUpForm, LoginForm
 from shop.models import Customer
 
 
@@ -33,8 +33,15 @@ def test(request):
 
 
 def login(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = LoginForm()
 
-    return render(request, "shop/login.html")
+    return render(request, "shop/login.html", {'form': form})
 
 
 def signup(request):
@@ -47,15 +54,15 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'shop/signup.html', {'form': form})
 
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            customer = Customer.objects.create(user=user, shipping_address=request.POST['shipping_address'],
-                                               billing_address=request.POST['billing_address'],
-                                               phone_number=request.POST['phone_number'])
-            return redirect('home')
-        else:
-            form = UserCreationForm()
-
-        return render(request, "shop/signup.html", {'form': form})
+    # if request.method == 'POST':
+    #     form = UserCreationForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         customer = Customer.objects.create(user=user, shipping_address=request.POST['shipping_address'],
+    #                                            billing_address=request.POST['billing_address'],
+    #                                            phone_number=request.POST['phone_number'])
+    #         return redirect('home')
+    #     else:
+    #         form = UserCreationForm()
+    #
+    #     return render(request, "shop/signup.html", {'form': form})

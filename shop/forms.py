@@ -3,6 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Field
 from django.contrib.auth.models import User
+from django.forms import ClearableFileInput
+
+from shop.models import Product
 
 
 class SignUpForm(UserCreationForm):
@@ -48,3 +51,13 @@ class LoginForm(UserCreationForm):
             Submit('submit', 'Sign Up', css_class='wrap-login100-form-btn login100-form-btn'),
 
         )
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'price', 'image']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 4}),
+            'image': ClearableFileInput(attrs={'class': 'form-control-file'})
+        }

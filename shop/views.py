@@ -1,7 +1,10 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
-from shop.forms import SignUpForm, LoginForm
+from shop.forms import SignUpForm, LoginForm, ProductForm
 from shop.models import Customer
 
 
@@ -9,7 +12,7 @@ from shop.models import Customer
 
 
 def home(request):
-    return render(request, "shop/index.html")
+    return render(request, "shop/index.html", {'logged_in': request.user.is_authenticated})
 
 
 def cart(request):
@@ -32,14 +35,39 @@ def test(request):
     return render(request, "shop/test.html")
 
 
-def login(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+def add_product(request):
+    form = SignUpForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('home')
     else:
-        form = LoginForm()
+        form = ProductForm()
+
+    return render(request, "shop/add_product.html", {'form': form})
+
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, "You have successfully logged out.")
+    return render(request, "shop/index.html")
+
+
+def login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"You are now logged in as {username}.")
+                return HttpResponseRedirect('/shop')
+            else:
+                messages.error(request, form.errors)
+        else:
+            messages.error(request, "Invalid username or password.")
+    form = AuthenticationForm()
 
     return render(request, "shop/login.html", {'form': form})
 

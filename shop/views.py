@@ -36,14 +36,15 @@ def test(request):
 
 
 def add_product(request):
-    form = SignUpForm(request.POST)
-    if form.is_valid():
-        form.save()
-        return redirect('home')
-    else:
-        form = ProductForm()
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        else:
+            form = ProductForm()
 
-    return render(request, "shop/add_product.html", {'form': form})
+        return render(request, "shop/add_product.html", {'form': form})
 
 
 def logout_request(request):

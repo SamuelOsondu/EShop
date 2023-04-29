@@ -36,21 +36,19 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="post">
+				<form class="login100-form validate-form" method="post" enctype="multipart/form-data">
 					<span class="login100-form-title p-b-26">
 						SIGN UP!
 					</span>
 
                         {% csrf_token %}
                         {% crispy form %}
-
-					<div class="text-center p-t-115">
-						<span class="txt1">
-							Have an account already?
-						</span>
-
-					</div>
 				</form>
+                {% if form.errors %}
+    <div class="alert alert-danger">
+        Please correct the errors below.
+    </div>
+        {% endif %}
 			</div>
 		</div>
 	</div>

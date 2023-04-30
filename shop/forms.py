@@ -54,7 +54,6 @@ class LoginForm(UserCreationForm):
 
 
 class ProductForm(forms.ModelForm):
-    email = forms.EmailField(max_length=254, required=True)
 
     class Meta:
         model = Product

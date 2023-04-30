@@ -42,9 +42,13 @@ def add_product(request):
             form.save()
             return redirect('home')
         else:
-            form = ProductForm()
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
+    else:
+        form = ProductForm()
 
-        return render(request, "shop/add_product.html", {'form': form})
+    return render(request, "shop/add_product.html", {'form': form})
 
 
 def logout_request(request):

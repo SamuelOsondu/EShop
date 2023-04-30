@@ -40,15 +40,17 @@
 					<span class="login100-form-title p-b-26">
 						SIGN UP!
 					</span>
+                {% if messages %}
+                    {% for message in messages %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
 
                         {% csrf_token %}
                         {% crispy form %}
 				</form>
-                {% if form.errors %}
-    <div class="alert alert-danger">
-        Please correct the errors below.
-    </div>
-        {% endif %}
 			</div>
 		</div>
 	</div>

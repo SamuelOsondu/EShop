@@ -76,7 +76,7 @@ class ProductForm(forms.ModelForm):
             Field('description', css_class='wrap-input100 validate-input'),
             Field('price', css_class='wrap-input100 validate-input'),
             Field('image', css_class='wrap-input100 validate-input'),
-            Submit('submit', 'Sign Up', css_class='wrap-login100-form-btn login100-form-btn'),
+            Submit('submit', 'Submit', css_class='wrap-login100-form-btn login100-form-btn'),
 
         )
 

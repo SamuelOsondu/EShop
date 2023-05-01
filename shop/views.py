@@ -40,7 +40,7 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('add_product')
         else:
             for field, errors in form.errors.items():
                 for error in errors:

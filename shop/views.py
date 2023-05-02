@@ -1,18 +1,20 @@
+import random
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-
-from shop.forms import SignUpForm, LoginForm, ProductForm
-from shop.models import Customer
+from shop.forms import SignUpForm, ProductForm
+from shop.models import Product
 
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, "shop/index.html", {'logged_in': request.user.is_authenticated})
+    products = list(Product.objects.all())
+    random_products = random.sample(products, 8)
+    return render(request, "shop/index.html", {'logged_in': request.user.is_authenticated, 'products': random_products})
 
 
 def cart(request):
@@ -28,7 +30,8 @@ def detail(request):
 
 
 def shop(request):
-    return render(request, "shop/shop.html")
+    products = Product.objects.all()
+    return render(request, "shop/shop.html", {"products": products})
 
 
 def test(request):
@@ -86,16 +89,3 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'shop/signup.html', {'form': form})
-
-    # if request.method == 'POST':
-    #     form = UserCreationForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         customer = Customer.objects.create(user=user, shipping_address=request.POST['shipping_address'],
-    #                                            billing_address=request.POST['billing_address'],
-    #                                            phone_number=request.POST['phone_number'])
-    #         return redirect('home')
-    #     else:
-    #         form = UserCreationForm()
-    #
-    #     return render(request, "shop/signup.html", {'form': form})

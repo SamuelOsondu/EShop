@@ -1,6 +1,7 @@
 import random
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -17,6 +18,7 @@ def home(request):
     return render(request, "shop/index.html", {'logged_in': request.user.is_authenticated, 'products': random_products})
 
 
+@login_required(login_url='signup')
 def cart(request):
     return render(request, "shop/cart.html")
 
@@ -57,7 +59,7 @@ def add_product(request):
 def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
-    return render(request, "shop/index.html")
+    return redirect('home')
 
 
 def login(request):
